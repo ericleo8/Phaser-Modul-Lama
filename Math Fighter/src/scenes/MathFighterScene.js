@@ -8,6 +8,7 @@ super('math-fighter-scene')
 init(){
 }
 preload(){
+    this.load.image
 }
 create(){
 }
