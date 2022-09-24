@@ -9,9 +9,9 @@ const config = {
   height: 620,
   physics: {
     default: "arcade",
-    arcade: {
-      gravity: { y: 200 },
-    },
+    // arcade: {
+    //   gravity: { y: 200 },
+    // },
   },
   scale: {
     mode: Phaser.Scale.FIT,

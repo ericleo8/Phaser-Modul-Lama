@@ -18,11 +18,13 @@ export default class GameOverScene extends Phaser.Scene {
   }
   create() {
     this.add.image(200, 320, "background");
-    this.add.image(200, 200, "game-over-text");
-    this.add.text(100, 300, 'Score: ' + this.score, {
-        fontSize: '32px', fill: 'black' })
+    this.add.image(240, 200, "game-over-text");
+    this.add.text(170, 300, "Score: " + this.score, {
+      fontSize: "32px",
+      fill: "black",
+    });
     this.replayButton = this.add
-      .image(200, 400, "replay-button")
+      .image(240, 400, "replay-button")
       .setInteractive();
     // berpindah ke bunny jump scene ketika button di klik
     this.replayButton.once(

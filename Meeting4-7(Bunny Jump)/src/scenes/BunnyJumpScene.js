@@ -69,7 +69,7 @@ export default class BunnyJumpScene extends Phaser.Scene {
 
   update() {
     // variable lokal untuk memastikan player menyentuh bawah
-   
+
     const touchingDown = this.player.body.touching.down;
     //kondisi jika player menyentuh bawah
     if (touchingDown) {
@@ -78,7 +78,7 @@ export default class BunnyJumpScene extends Phaser.Scene {
       //dan berubah animasi menjadi melompat
       this.player.setTexture("bunny_jump");
       this.sound.play("jumpSound");
-      this.sound.setVolume(0)
+      this.sound.setVolume(0);
       // var volume = this.sound.volume
     } //mencari percepatan player
     const vy = this.player.body.velocity.y;

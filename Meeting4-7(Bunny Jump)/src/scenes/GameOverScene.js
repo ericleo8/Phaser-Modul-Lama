@@ -1,6 +1,9 @@
 import Phaser from "phaser";
 var replayButton;
 export default class GameOverScene extends Phaser.Scene {
+  init(data) {
+    this.score = data.score;
+  }
   constructor() {
     super("game-over-scene");
   }

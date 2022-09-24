@@ -9,11 +9,11 @@ export default class GhostBusterScene extends Phaser.Scene {
 
   init() {
     this.platforms = undefined;
-    this.shoot = false;
     this.bomb = undefined;
     this.cursors = undefined;
     this.nav_left = false;
     this.nav_right = false;
+    this.shoot = false;
     this.speed = 100;
     this.ghost = undefined;
     this.ghostSpeed = 60;
@@ -67,6 +67,7 @@ export default class GhostBusterScene extends Phaser.Scene {
       null, // proses callback yang tidak dibutuhkan
       this // memastikan overlap pada scene ini
     );
+
     this.scoreLabel = this.createScoreLabel(330, 16, 0);
   }
   update(time) {
@@ -116,9 +117,6 @@ export default class GhostBusterScene extends Phaser.Scene {
       const bomb = this.bomb.get(0, 0, "bomb");
       if (bomb) {
         bomb.fire(this.player.x, this.player.y);
-        // this.lastFired = time + 150;
-        // //tambahkan kode di bawah ini
-        // this.sound.play("laserSound");
       }
     }
   }

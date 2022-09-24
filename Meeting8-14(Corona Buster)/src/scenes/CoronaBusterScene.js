@@ -19,12 +19,13 @@ export default class CoronaBusterScene extends Phaser.Scene {
     this.enemies = undefined;
     this.enemySpeed = 60;
     this.lasers = undefined;
-    this.lastFired = 0;
+    this.lastFired = 10;
     this.scoreLabel = undefined;
     this.lifeLabel = undefined;
     this.handsanitizer = undefined;
-    this.backsound = undefined
+    this.backsound = undefined;
   }
+
   preload() {
     this.load.image("background", "images/bg_layer1.png");
     this.load.image("cloud", "images/cloud.png");
@@ -46,8 +47,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
     this.load.audio("laserSound", "sfx/sfx_laser.ogg");
     this.load.audio("destroySound", "sfx/destroy.mp3");
     this.load.audio("handsanitizerSound", "sfx/handsanitizer.mp3");
-    this.load.audio('backsound','sfx/backsound/SkyFire.ogg')
-    this.load.audio('gameOverSound','sfx/gameover.wav')
+    this.load.audio("backsound", "sfx/backsound/SkyFire.ogg");
+    this.load.audio("gameOverSound", "sfx/gameover.wav");
   }
   create() {
     const gameWidth = this.scale.width * 0.5;
@@ -118,9 +119,9 @@ export default class CoronaBusterScene extends Phaser.Scene {
       null,
       this
     );
-    this.backsound = this.sound.add('backsound')
-    var soundConfig = {loop : true}
-this.backsound.play(soundConfig)
+    this.backsound = this.sound.add("backsound");
+    var soundConfig = { loop: true, volume: 0.5 };
+    this.backsound.play(soundConfig);
   }
 
   update(time) {
@@ -132,7 +133,7 @@ this.backsound.play(soundConfig)
         child.y = child.displayHeight * -1;
       }
     });
-    this.movePlayer(this.player);
+    this.movePlayer(this.player, time);
   }
   createButton() {
     this.input.addPointer(3);
@@ -234,7 +235,8 @@ this.backsound.play(soundConfig)
       this.player.setVelocityX(0);
       this.player.anims.play("turn");
     }
-    if ((this.shoot && time > this.lastFired) || this.cursors.space.isDown) {
+    // if ((this.shoot && time > this.lastFired) || this.cursors.space.isDown) {
+    if (this.shoot || this.cursors.space.isDown) {
       const laser = this.lasers.get(0, 0, "laser");
       if (laser) {
         laser.fire(this.player.x, this.player.y);
@@ -309,10 +311,9 @@ this.backsound.play(soundConfig)
       this.scene.start("game-over-scene", {
         score: this.scoreLabel.getScore(),
       });
-      this.sound.stopAll()
-      this.sound.play('gameOverSound')
-    } 
-    
+      this.sound.stopAll();
+      this.sound.play("gameOverSound");
+    }
   }
   increaseLife(player, handsanitizer) {
     handsanitizer.die();
