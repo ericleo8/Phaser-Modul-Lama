@@ -145,8 +145,7 @@ export default class MathFighterScene extends Phaser.Scene {
           fill: "#000",
           fontStyle: "bold",
           align: "center",
-          // @ts-ignore
-        })
+        }) // @ts-ignore
         .setText(this.countdownTimer);
     }
 
@@ -241,10 +240,12 @@ export default class MathFighterScene extends Phaser.Scene {
 
     this.resultText = this.add.text(this.gameHalfWidth, 200, "0", {
       fontSize: "32px",
+      //@ts-ignore
       fill: "#000",
     });
     this.questionText = this.add.text(this.gameHalfWidth, 100, "0", {
       fontSize: "32px",
+      //@ts-ignore
       fill: "#000",
     });
     this.createButtons();
